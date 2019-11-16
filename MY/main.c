@@ -21,9 +21,9 @@ int main(void)
 	temp_data_2 = atoi(data_2_char);
 	
 	while(1)
-	{		
+	{	
 		Input_display(); //输入与显示，这个不要动
-		
+
 		/*拥有的动作
 		Shooting_prepare();
 		Shooting_go();
@@ -38,7 +38,7 @@ int main(void)
 		
 		switch(Input_data())
 		{
-			case 0:
+			case 0: Shooting_go();
 				break;
 			case 1:
 				break;
@@ -52,8 +52,9 @@ int main(void)
 				break;
 			case 6:
 				break;
-			case 7:
+			case 7: Swallowing();
 				break;
 		}
+
 	}
 }

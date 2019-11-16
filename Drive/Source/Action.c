@@ -1,15 +1,15 @@
 #include "stdAfx.h"
 
-#define Shooting_Servo_Back_Angle 150 //射球推球舵机回到后面的角度
+#define Shooting_Servo_Back_Angle 5 //射球推球舵机回到后面的角度 (0~150)
 #define Shooting_Servo_Push_Angle 150 //射球推球舵机去推球的角度
 
-#define Catching_Servo_Open_Angle 150 //夹球舵机打开夹子的角度
+#define Catching_Servo_Open_Angle 10 //夹球舵机打开夹子的角度
 #define Catching_Servo_Close_Angle 150 //夹球舵机关闭夹子的角度
 
-#define Raising_Servo_Up_Angle 150 //20千克抬升舵机抬升角度
+#define Raising_Servo_Up_Angle 10 //20千克抬升舵机抬升角度
 #define Raising_Servo_Down_Angle 150 //20千克抬升舵机放下角度
 
-#define Filping_Servo_Up_Angle 150 //倒球舵机倒球角度
+#define Filping_Servo_Up_Angle 10 //倒球舵机倒球角度
 #define Filping_Servo_Down_Angle 150 //倒球舵机放下角度
 
 int temp_data_1 = 0, temp_data_2 = 0;
@@ -73,10 +73,12 @@ void Input_display(void)
 		OLED_CLS();
 		Delay_ms(10);
 	}
-	OLED_ShowStr(15,1,(unsigned char*)"L_Speed = ",2);
-	OLED_ShowNum(91,1,temp_data_1,2);
-	OLED_ShowStr(15,4,(unsigned char*)"R_Speed = ",2);
-	OLED_ShowNum(91,4,temp_data_2,2);
+	OLED_ShowStr(15,0,(unsigned char*)"L_Speed = ",2);
+	OLED_ShowNum(91,0,temp_data_1,2);
+	OLED_ShowStr(15,3,(unsigned char*)"R_Speed = ",2);
+	OLED_ShowNum(91,3,temp_data_2,2);
+	OLED_ShowStr(15,6,(unsigned char*)"RAction = ",2);
+	OLED_ShowNum(91,6,Input_data(),2);
 }
 
 int Input_data(void)
@@ -137,6 +139,7 @@ void Shooting_go(void)
 	GPIO_SetBits(GPIOB, SecAIN1);
 	GPIO_ResetBits(GPIOB, SecAIN2);
 	TIM_SetCompare1(TIM8,71 * temp_data_2);
+	//Delay_ms(1000);
 }
 
 void Catching_servo_close(void)
@@ -178,5 +181,6 @@ void Swallowing(void)
 	GPIO_ResetBits(GPIOB, SecAIN1);
 	GPIO_SetBits(GPIOB, SecAIN2);
 	TIM_SetCompare1(TIM8,2000);
+	//Delay_ms(1000);
 }
 

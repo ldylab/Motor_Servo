@@ -46,16 +46,16 @@ void servo_angle(int servo_num, uint16_t angle)
   if(angle >= 178)
     angle = 178;
   //將角度值轉換為脈衝值  
-  pulse = (uint16_t)(50 + angle * 100/90.0);  //此轉換公式需根據pwm的arr及psc配置來做相應變化
+  pulse = (uint16_t)(30 + angle * 100/90.0);  //此轉換公式需根據pwm的arr及psc配置來做相應變化
 	switch(servo_num)
 	{
-		case 1: TIM_SetCompare1(TIM1, pulse);
+		case 3: TIM_SetCompare1(TIM1, pulse);
 		break;
 		case 2: TIM_SetCompare2(TIM1, pulse);
 		break;
-		case 3: TIM_SetCompare3(TIM1, pulse);
+		case 4: TIM_SetCompare3(TIM1, pulse);
 		break;
-		case 4: TIM_SetCompare4(TIM1, pulse);
+		case 1: TIM_SetCompare4(TIM1, pulse);
 		break;
 	}
 }
